@@ -1,0 +1,29 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:127.0.0.1}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yml
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: @profiles.active@
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL-USER:root}
+      password: ${MYSQL-PWD:root}
+      url: jdbc:mysql://${MYSQL-HOST:dynroute-database}:${MYSQL-PORT:3306}/${MYSQL-DB:dynroute}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+  redis:
+    host: dynroute-redis
+gray:
+  rule:
+    enabled: true
