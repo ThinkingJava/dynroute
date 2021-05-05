@@ -92,6 +92,7 @@
 		<module>dynroute-api</module>
 		<module>dynroute-gateway</module>
 		<module>dynroute-server</module>
+		<module>dynroute-core</module>
 	</modules>
 
 	<dependencyManagement>

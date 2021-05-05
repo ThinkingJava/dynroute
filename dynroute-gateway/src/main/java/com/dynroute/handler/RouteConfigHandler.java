@@ -31,6 +31,11 @@ public class RouteConfigHandler implements HandlerFunction<ServerResponse> {
     private final GatewayRouteConfigService gatewayRouteConfigService;
     private final ObjectMapper objectMapper;
 
+    /**
+     * 路由配置查询及修改
+     * @param serverRequest
+     * @return
+     */
     @SneakyThrows
     @Override
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {

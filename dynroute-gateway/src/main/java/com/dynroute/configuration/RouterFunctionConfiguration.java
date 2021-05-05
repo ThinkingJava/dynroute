@@ -10,6 +10,9 @@ import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 
+/**
+ * 动态路由配置入口
+ */
 @Slf4j
 @Configuration
 @AllArgsConstructor
