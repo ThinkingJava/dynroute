@@ -175,11 +175,11 @@ INSERT  INTO `gateway_route_config`(`id`,`route_name`,`route_id`,`predicates`,`f
 
 这个时候服务core服务是不通的。
 
-![image](D:image\image1.png)
+![image](https://github.com/ThinkingJava/dynroute/blob/master/image/image1.png?raw=true)
 
 新增网关路由配置
 
-![](D:image\image2.png)
+![](https://github.com/ThinkingJava/dynroute/blob/master/image/image2.png?raw=true)
 
 ```json
 [
@@ -220,7 +220,7 @@ INSERT  INTO `gateway_route_config`(`id`,`route_name`,`route_id`,`predicates`,`f
 
 新增路由配置后，则可访问
 
-![](D:image\image3.png)
+![](https://github.com/ThinkingJava/dynroute/blob/master/image/image3.png?raw=true)
 
 
 
