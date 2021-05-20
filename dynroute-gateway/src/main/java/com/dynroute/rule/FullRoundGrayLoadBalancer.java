@@ -8,6 +8,8 @@ import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 轮询算法
@@ -17,16 +19,18 @@ public class FullRoundGrayLoadBalancer implements GrayLoadBalancer {
 
     private DiscoveryClient discoveryClient;
 
-    private volatile int index;
+    private AtomicInteger position;
 
     public FullRoundGrayLoadBalancer(DiscoveryClient discoveryClient) {
         this.discoveryClient = discoveryClient;
+        this.position = new AtomicInteger((new Random()).nextInt(100));
     }
 
     /**
      * 根据serviceId 筛选可用服务
+     *
      * @param serviceId 服务ID
-     * @param request 当前请求
+     * @param request   当前请求
      * @return
      */
     @Override
@@ -38,10 +42,8 @@ public class FullRoundGrayLoadBalancer implements GrayLoadBalancer {
             log.warn("No instance available for {}", serviceId);
             throw new NotFoundException("No instance available for " + serviceId);
         }
-        if (index == instances.size()) {
-            index = 0;
-        }
-        return instances.get(index++);
+        int pos = Math.abs(this.position.incrementAndGet());
+        return instances.get(pos % instances.size());
     }
 
 }
